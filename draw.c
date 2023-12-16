@@ -6,7 +6,7 @@
 /*   By: asaber <asaber@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 22:34:46 by asaber            #+#    #+#             */
-/*   Updated: 2023/12/12 22:26:13 by asaber           ###   ########.fr       */
+/*   Updated: 2023/12/13 19:46:06 by asaber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,12 +66,53 @@ void	draw_floor_and_ceiling(double start_point, double end_point, double stripId
 	}
 }
 
+void	draw_by_diriction(double stripId, double start_point, double end_point)
+{
+	// if (g_info.ray_angle >= 0 && g_info.ray_angle < M_PI / 2)
+	// {
+		while (start_point < end_point)
+		{
+			mlx_put_pixel(g_info.image, stripId, start_point, ft_pixel(216, 216, 216, 255));
+			start_point++;
+		}
+	// }
+	// else if (g_info.ray_angle >= M_PI / 2 && g_info.ray_angle < M_PI)
+	// {
+	// 	while (start_point < end_point)
+	// 	{
+			
+	// 		mlx_put_pixel(g_info.image, stripId, start_point, ft_pixel(64, 142, 145, 255));
+	// 		start_point++;
+	// 	}
+	// }
+	// else if (g_info.ray_angle >= M_PI && g_info.ray_angle < 3 * M_PI / 2)
+	// {
+	// 	while (start_point < end_point)
+	// 	{
+			
+	// 		mlx_put_pixel(g_info.image, stripId, start_point, ft_pixel(216, 216, 216, 255));
+	// 		start_point++;
+	// 	}
+	// }
+	// else if (g_info.ray_angle >= 3 * M_PI / 2 && g_info.ray_angle < 0)
+	// {
+	// 	while (start_point < end_point)
+	// 	{
+			
+	// 		mlx_put_pixel(g_info.image, stripId, start_point, ft_pixel(36, 89, 83, 255));
+	// 		start_point++;
+	// 	}
+	// }
+		
+}
+
 void	draw_walls(double stripId)
 {
 	double wallStripHight;
 	double start_point;
 	double end_point;
 	g_info.distProjectPlane = (g_info.WIGHT / 2) / tan(g_info.fov_angle / 2);
+	g_info.f_dist = g_info.f_dist * cos(g_info.ray_angle - g_info.player.rotation_angle);
 	g_info.wallStripHight = squire_size / g_info.f_dist * g_info.distProjectPlane;
 	
 	start_point = (g_info.HIGHT / 2) - (g_info.wallStripHight / 2);
@@ -82,12 +123,22 @@ void	draw_walls(double stripId)
 		start_point = 0;
 	if (end_point > g_info.HIGHT)
 		end_point = g_info.HIGHT;
-	while (start_point < end_point)
+	draw_by_diriction(stripId, start_point, end_point);
+}
+
+void	draw_ray_angel(void)
+{
+	int	i;
+	double	ray_angle;
+
+	ray_angle = g_info.player.rotation_angle - (g_info.fov_angle / 2);
+	i = 0;
+	while (i < g_info.WIGHT)
 	{
-		mlx_put_pixel(g_info.image, stripId, start_point, ft_pixel(228, 147, 147, 255));
-		start_point++;
+		draw_line_dda(g_info.minimap *  g_info.player.x, g_info.minimap * g_info.player.y, g_info.minimap * (g_info.player.x + cos(ray_angle) * 32), g_info.minimap * (g_info.player.y + sin(ray_angle) * 32));
+		ray_angle += g_info.fov_angle / g_info.WIGHT;
+		i++;
 	}
-	draw_line_dda(g_info.minimap *  g_info.player.x, g_info.minimap * g_info.player.y, g_info.minimap * g_info.ray_x, g_info.minimap * g_info.ray_y);
 }
 
 void	draw_map(void* param)
@@ -114,4 +165,5 @@ void	draw_map(void* param)
 		}
 		i++;
 	}
+	draw_ray_angel();	
 }

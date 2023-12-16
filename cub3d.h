@@ -6,7 +6,7 @@
 /*   By: asaber <asaber@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 19:20:02 by asaber            #+#    #+#             */
-/*   Updated: 2023/12/12 21:07:21 by asaber           ###   ########.fr       */
+/*   Updated: 2023/12/13 19:49:28 by asaber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,8 @@
 #include <fcntl.h>
 #include "/Users/asaber/MLX42/include/MLX42/MLX42.h"
 
-#define squire_size 128
+#define squire_size 64
+
 #define buffer_size 500000
 
 

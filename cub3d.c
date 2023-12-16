@@ -6,7 +6,7 @@
 /*   By: asaber <asaber@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 19:20:53 by asaber            #+#    #+#             */
-/*   Updated: 2023/12/12 21:48:04 by asaber           ###   ########.fr       */
+/*   Updated: 2023/12/13 11:17:16 by asaber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,7 @@ void	pre_init(int fd)
 	g_info.player.raduis = 3.0;
 	g_info.player.walkdir = 0;
 	g_info.player.turndir = 0;
-	g_info.player.rotation_angle = M_PI / 2;
-	g_info.player.move_speed = 5.0;
+	g_info.player.move_speed = 3.0;
 	g_info.fov_angle = 60.0 * (M_PI / 180);
 	g_info.player.turndir = 0;
 	g_info.player.walkdir = 0;
