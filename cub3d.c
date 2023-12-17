@@ -6,34 +6,47 @@
 /*   By: asaber <asaber@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 19:20:53 by asaber            #+#    #+#             */
-/*   Updated: 2023/12/13 11:17:16 by asaber           ###   ########.fr       */
+/*   Updated: 2023/12/17 21:01:51 by asaber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-
 int	map_len_colom(char **map)
 {
-	int i;
+	int	i;
 
-	i  = 0;
+	i = 0;
+	while (map[i])
+		i++;
+	return (i);
+}
+
+int	get_maxlen(char **map)
+{
+	int	i;
+	int	max;
+
+	i = 0;
+	max = 0;
 	while (map[i])
 	{
+		if (ft_strlen(map[i]) > max)
+			max = ft_strlen(map[i]);
 		i++;
 	}
-	return (i);
+	return (max);
 }
 
 void	pre_init(int fd)
 {
-	g_info.buffer = malloc(buffer_size);
-	read(fd, g_info.buffer, buffer_size);
+	g_info.buffer = malloc(BUFFER_SIZE);
+	read(fd, g_info.buffer, BUFFER_SIZE);
 	g_info.map = ft_split(g_info.buffer, '\n');
-	g_info.map_num_colom = ft_strlen(g_info.map[0]);
+	g_info.map_num_colom = ft_strlen(g_info.map[4]);
 	g_info.map_num_rows = map_len_colom(g_info.map);
-	g_info.HIGHT = g_info.map_num_rows * squire_size;
-	g_info.WIGHT = g_info.map_num_colom * squire_size;
+	g_info.hight = g_info.map_num_rows * SQUIR_SIZE;
+	g_info.wight = g_info.map_num_colom * SQUIR_SIZE;
 	g_info.player.raduis = 3.0;
 	g_info.player.walkdir = 0;
 	g_info.player.turndir = 0;
@@ -49,12 +62,14 @@ void	pre_init(int fd)
 
 int	mlx_checks(mlx_t **mlx)
 {
-	if (!(*mlx = mlx_init(g_info.WIGHT, g_info.HIGHT, "cub3d", true)))
+	*mlx = mlx_init(g_info.wight, g_info.hight, "cub3d", true);
+	if (!*mlx)
 	{
 		puts(mlx_strerror(mlx_errno));
 		return (EXIT_FAILURE);
 	}
-	if (!(g_info.image = mlx_new_image(*mlx, g_info.WIGHT, g_info.HIGHT)))
+	g_info.image = mlx_new_image(*mlx, g_info.wight, g_info.hight);
+	if (!g_info.image)
 	{
 		mlx_close_window(*mlx);
 		puts(mlx_strerror(mlx_errno));
@@ -82,7 +97,6 @@ int	main(int ac, char **av)
 			return (EXIT_FAILURE);
 		mlx_loop_hook(mlx, draw_map, mlx);
 		mlx_loop_hook(mlx, mlx_moves, mlx);
-		
 		mlx_loop(mlx);
 		mlx_terminate(mlx);
 	}

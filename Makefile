@@ -6,12 +6,12 @@
 #    By: asaber <asaber@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/04 19:29:52 by asaber            #+#    #+#              #
-#    Updated: 2023/12/11 15:11:20 by asaber           ###   ########.fr        #
+#    Updated: 2023/12/17 15:27:32 by asaber           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME	:= cub3d
-CFLAGS	:=  -Wunreachable-code -Ofast -fsanitize=address -g #-Wextra -Wall -Werror
+CFLAGS	:=  -Wunreachable-code -Ofast -Wextra -Wall -Werror -fsanitize=address -g
 LIBMLX	:= /Users/$(USER)/MLX42
 
 HEADERS	:= -I ./include -I $(LIBMLX)/include

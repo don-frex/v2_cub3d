@@ -6,11 +6,50 @@
 /*   By: asaber <asaber@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 00:32:38 by asaber            #+#    #+#             */
-/*   Updated: 2023/12/13 10:40:38 by asaber           ###   ########.fr       */
+/*   Updated: 2023/12/17 19:51:53 by asaber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+void	draw_player(void)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	while (i < g_info.player.raduis)
+	{
+		j = 0;
+		while (j < g_info.player.raduis)
+		{
+			mlx_put_pixel(g_info.image, g_info.minimap * g_info.player.x + i, 
+				g_info.minimap * g_info.player.y + j, 
+				ft_pixel(123, 102, 255, 255));
+			j++;
+		}
+		i++;
+	}
+	cast_all_ray();
+}
+
+void	draw_ray_angel(void)
+{
+	unsigned int	i;
+	double			ray_angle;
+
+	ray_angle = g_info.player.rotation_angle - (g_info.fov_angle / 2);
+	i = 0;
+	while (i < g_info.wight)
+	{
+		draw_line_dda(g_info.minimap * g_info.player.x, g_info.minimap * 
+			g_info.player.y, g_info.minimap * 
+			(g_info.player.x + cos(ray_angle) * 32), 
+			g_info.minimap * (g_info.player.y + sin(ray_angle) * 32));
+		ray_angle += g_info.fov_angle / g_info.wight;
+		i++;
+	}
+}
 
 void	give_rotation(char c)
 {
@@ -32,24 +71,22 @@ void	find_player(void)
 
 	check = false;
 	i = 0;
-	while (g_info.map[i])
+	while (g_info.map[i] && !check)
 	{
 		j = 0;
 		while (g_info.map[i][j])
 		{
-			if (g_info.map[i][j] == 'N' || g_info.map[i][j] == 'S' || g_info.map[i][j] == 'W' || g_info.map[i][j] == 'E')
+			if (g_info.map[i][j] == 'N' || g_info.map[i][j] == 'S' || 
+				g_info.map[i][j] == 'W' || g_info.map[i][j] == 'E')
 			{
-				g_info.player.x = (squire_size * j) + (squire_size/2);
-				g_info.player.y = (squire_size * i) + (squire_size/2);
+				g_info.player.x = (SQUIR_SIZE * j) + (SQUIR_SIZE / 2);
+				g_info.player.y = (SQUIR_SIZE * i) + (SQUIR_SIZE / 2);
 				check = true;
 				give_rotation(g_info.map[i][j]);
 				break ;
 			}
 			j++;
-			if (check)
-				break;
 		}
 		i++;
 	}
-	
 }
