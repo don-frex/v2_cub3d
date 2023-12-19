@@ -6,7 +6,7 @@
 /*   By: asaber <asaber@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 00:32:38 by asaber            #+#    #+#             */
-/*   Updated: 2023/12/19 14:20:24 by asaber           ###   ########.fr       */
+/*   Updated: 2023/12/19 20:17:04 by asaber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@ void	draw_player(t_info *g_info)
 		j = 0;
 		while (j < g_info->player.raduis)
 		{
-			mlx_put_pixel(g_info->image, g_info->minimap * g_info->player.x + i, 
-				g_info->minimap * g_info->player.y + j, 
+			mlx_put_pixel(g_info->image, g_info->minimap * 
+				g_info->player.x + i, g_info->minimap * g_info->player.y + j, 
 				ft_pixel(123, 102, 255, 255));
 			j++;
 		}
@@ -42,10 +42,9 @@ void	draw_ray_angel(t_info *g_info)
 	i = 0;
 	while (i < g_info->wight)
 	{
-		draw_line_dda(g_info->minimap * g_info->player.x, g_info->minimap * 
-			g_info->player.y, g_info->minimap * 
-			(g_info->player.x + cos(ray_angle) * 132), 
-			g_info->minimap * (g_info->player.y + sin(ray_angle) * 132), g_info->image);
+		draw_line_dda(g_info->minimap * (g_info->player.x + 
+				cos(ray_angle) * SQUIR_SIZE), g_info->minimap * 
+			(g_info->player.y + sin(ray_angle) * SQUIR_SIZE), g_info);
 		ray_angle += g_info->fov_angle / g_info->wight;
 		i++;
 	}

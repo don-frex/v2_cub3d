@@ -6,7 +6,7 @@
 /*   By: asaber <asaber@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 19:20:53 by asaber            #+#    #+#             */
-/*   Updated: 2023/12/19 15:45:08 by asaber           ###   ########.fr       */
+/*   Updated: 2023/12/19 18:10:03 by asaber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,14 +43,14 @@ void	pre_init(int fd, t_info *g_info)
 	g_info->buffer = malloc(BUFFER_SIZE);
 	read(fd, g_info->buffer, BUFFER_SIZE);
 	g_info->map = ft_split(g_info->buffer, '\n');
-	g_info->map_num_colom = ft_strlen(g_info->map[4]);
+	g_info->map_num_colom = ft_strlen(g_info->map[7]);
 	g_info->map_num_rows = map_len_colom(g_info->map);
 	g_info->hight = g_info->map_num_rows * SQUIR_SIZE;
 	g_info->wight = g_info->map_num_colom * SQUIR_SIZE;
 	g_info->player.raduis = 3.0;
 	g_info->player.walkdir = 0;
 	g_info->player.turndir = 0;
-	g_info->player.move_speed = 5.0;
+	g_info->player.move_speed = 15.0;
 	g_info->fov_angle = 60.0 * (M_PI / 180);
 	g_info->player.turndir = 0;
 	g_info->player.walkdir = 0;
@@ -97,15 +97,14 @@ int	main(int ac, char **av)
 		if (!g_info)
 			return (EXIT_FAILURE);
 		pre_init(fd, g_info);
-		g_info->N = mlx_load_png("cub3dimg/11.png");
-		g_info->S = mlx_load_png("cub3dimg/12.png");
-		g_info->W = mlx_load_png("cub3dimg/13.png");
-		g_info->E = mlx_load_png("cub3dimg/14.png");
-		if (!g_info->N || !g_info->S || !g_info->W || !g_info->E)
+		g_info->n = mlx_load_png("cub3dimg/11.png");
+		g_info->s = mlx_load_png("cub3dimg/12.png");
+		g_info->w = mlx_load_png("cub3dimg/13.png");
+		g_info->e = mlx_load_png("cub3dimg/14.png");
+		if (!g_info->n || !g_info->s || !g_info->w || !g_info->e)
 			return (EXIT_FAILURE);
 		if (mlx_checks(&mlx, g_info) == EXIT_FAILURE)
 			return (EXIT_FAILURE);
-		//pause();
 		g_info->mlx = &mlx;
 		mlx_loop_hook(mlx, draw_map, g_info);
 		mlx_loop_hook(mlx, mlx_moves, g_info);

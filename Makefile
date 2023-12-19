@@ -6,17 +6,17 @@
 #    By: asaber <asaber@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/04 19:29:52 by asaber            #+#    #+#              #
-#    Updated: 2023/12/19 17:20:28 by asaber           ###   ########.fr        #
+#    Updated: 2023/12/19 20:59:57 by asaber           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME	:= cub3d
-CFLAGS	:=  -Wunreachable-code -Ofast -Wextra -Wall -Werror -fsanitize=address -g
+CFLAGS	:=  -Wunreachable-code -Ofast -Wextra -Wall -Werror #-fsanitize=address -g
 LIBMLX	:= /Users/$(USER)/MLX42
 
 HEADERS	:= -I ./include -I $(LIBMLX)/include
 LIBS	:= $(LIBMLX)/build/libmlx42.a -ldl -lglfw -pthread -lm
-SRCS	:=	cub3d.c draw.c put_pixel.c move.c player.c checks.c raycasting.c #raycasting.c
+SRCS	:=	cub3d.c draw.c put_pixel.c move.c player.c checks.c raycasting.c drawing_tools.c raycasting_checks.c texters.c
 OBJS	:= ${SRCS:.c=.o} lib_functions/ft_split.o lib_functions/ft_strlen.o
 
 all: libmlx $(NAME)
