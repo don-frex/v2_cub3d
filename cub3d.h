@@ -6,7 +6,7 @@
 /*   By: asaber <asaber@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 19:20:02 by asaber            #+#    #+#             */
-/*   Updated: 2023/12/17 19:29:00 by asaber           ###   ########.fr       */
+/*   Updated: 2023/12/19 14:25:59 by asaber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 # include <fcntl.h>
 # include "/Users/asaber/MLX42/include/MLX42/MLX42.h"
 
-# define SQUIR_SIZE 32
+# define SQUIR_SIZE 64
 # define BUFFER_SIZE 500000
 
 typedef struct playerinfo
@@ -50,6 +50,19 @@ typedef struct raycasting
 
 typedef struct gameinfo
 {
+	mlx_t			**mlx;
+	mlx_texture_t	*N;
+	mlx_texture_t	*W;
+	mlx_texture_t	*E;
+	mlx_texture_t	*S;
+	mlx_texture_t	*texture;
+	int				up;
+	int				down;
+	int				left;
+	int				right;
+	int				start_point;
+	int				horizantal;
+	int				vertical;
 	mlx_image_t		*image;
 	char			*buffer;
 	char			**map;
@@ -93,12 +106,12 @@ int32_t	ft_pixel(int32_t r, int32_t g, int32_t b, int32_t a);
 void	draw_map(void *param);
 void	mlx_moves(void *param);
 void	move_player(void);
-void	find_player(void);
-int		_x_y_to_check(int y, int x, char **map);
-void	draw_line_dda(int x1, int y1, int x2, int y2);
-void	cast_all_ray(void);
-void	draw_walls(double stripId);
-void	draw_player(void);
-void	draw_ray_angel(void);
+void	find_player(t_info *g_info);
+int		_x_y_to_check(int y, int x, char **map, t_info *g_info);
+void	draw_line_dda(int x1, int y1, int x2, int y2, mlx_image_t *image);
+void	cast_all_ray(t_info *g_info);
+void	draw_walls(double stripId, t_info *g_info);
+void	draw_player(t_info *g_info);
+void	draw_ray_angel(t_info *g_info);
 
 #endif
