@@ -6,7 +6,7 @@
 /*   By: asaber <asaber@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 19:20:53 by asaber            #+#    #+#             */
-/*   Updated: 2023/12/19 18:10:03 by asaber           ###   ########.fr       */
+/*   Updated: 2023/12/20 00:50:51 by asaber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,18 +84,40 @@ int	mlx_checks(mlx_t **mlx, t_info *g_info)
 	return (EXIT_SUCCESS);
 }
 
+void	ft_free(t_info *g_info)
+{
+	int	i;
+
+	i = 0;
+	while (g_info->map[i])
+	{
+		free(g_info->map[i]);
+		i++;
+	}
+	free(g_info->map);
+	free(g_info->buffer);
+	mlx_delete_image(*g_info->mlx, g_info->image);
+	mlx_delete_texture(g_info->n);
+	mlx_delete_texture(g_info->s);
+	mlx_delete_texture(g_info->w);
+	mlx_delete_texture(g_info->e);
+	mlx_terminate(*g_info->mlx);
+	free(g_info);
+}
+
 int	main(int ac, char **av)
 {
+	t_info	*g_info;
 	int		fd;
 	mlx_t	*mlx;
-	t_info	*g_info;
+
+	g_info = malloc(sizeof(t_info));
+	if (!g_info)
+		return (EXIT_FAILURE);
 
 	if (ac == 2)
 	{
 		fd = open(av[1], O_RDWR);
-		g_info = malloc(sizeof(t_info));
-		if (!g_info)
-			return (EXIT_FAILURE);
 		pre_init(fd, g_info);
 		g_info->n = mlx_load_png("cub3dimg/11.png");
 		g_info->s = mlx_load_png("cub3dimg/12.png");
@@ -109,6 +131,7 @@ int	main(int ac, char **av)
 		mlx_loop_hook(mlx, draw_map, g_info);
 		mlx_loop_hook(mlx, mlx_moves, g_info);
 		mlx_loop(mlx);
-		mlx_terminate(mlx);
 	}
+	ft_free(g_info);
+	return (EXIT_SUCCESS);
 }

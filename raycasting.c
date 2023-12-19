@@ -6,7 +6,7 @@
 /*   By: asaber <asaber@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 21:05:51 by asaber            #+#    #+#             */
-/*   Updated: 2023/12/19 20:46:49 by asaber           ###   ########.fr       */
+/*   Updated: 2023/12/19 23:41:48 by asaber           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,7 @@ void	main_cast(t_info *g_info)
 	cast_horizontal(raycast, g_info);
 	cast_vertical(raycast, g_info);
 	check_distence(raycast, g_info);
+	free(raycast);
 }
 
 double	normalize_angle(double angle)
