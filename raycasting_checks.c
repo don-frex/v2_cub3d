@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting_checks.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asaber <asaber@student.42.fr>              +#+  +:+       +#+        */
+/*   By: adnane <adnane@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/19 20:38:26 by asaber            #+#    #+#             */
-/*   Updated: 2023/12/19 20:48:25 by asaber           ###   ########.fr       */
+/*   Updated: 2024/12/22 18:06:10 by adnane           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,13 +69,13 @@ void	check_distence(t_raycasting *raycast, t_info *g_info)
 				(raycast->nexth_x - g_info->player.x) + (raycast->nexth_y - 
 					g_info->player.y) * (raycast->nexth_y - g_info->player.y));
 	else
-		g_info->hdist = MAXFLOAT;
+		g_info->hdist = FLT_MAX;
 	if (g_info->vfoundwall)
 		g_info->vdist = sqrt((raycast->nextv_x - g_info->player.x) * 
 				(raycast->nextv_x - g_info->player.x) + (raycast->nextv_y - 
 					g_info->player.y) * (raycast->nextv_y - g_info->player.y));
 	else
-		g_info->vdist = MAXFLOAT;
+		g_info->vdist = FLT_MAX;
 	if (g_info->vdist < g_info->hdist)
 	{
 		g_info->f_dist = g_info->vdist;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asaber <asaber@student.42.fr>              +#+  +:+       +#+        */
+/*   By: adnane <adnane@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 19:20:02 by asaber            #+#    #+#             */
-/*   Updated: 2023/12/20 00:48:57 by asaber           ###   ########.fr       */
+/*   Updated: 2024/12/22 18:21:26 by adnane           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,12 @@
 # include <stdlib.h>
 # include <stdbool.h>
 # include <unistd.h>
+# include <float.h>
 # include <math.h>
 # include <fcntl.h>
-# include "/Users/asaber/MLX42/include/MLX42/MLX42.h"
+# include "/home/adnane/MLX42/include/MLX42/MLX42.h"
 
-# define SQUIR_SIZE 128
+# define SQUIR_SIZE 96
 # define BUFFER_SIZE 500000
 
 typedef struct playerinfo

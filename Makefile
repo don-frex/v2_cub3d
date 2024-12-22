@@ -3,16 +3,16 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: asaber <asaber@student.42.fr>              +#+  +:+       +#+         #
+#    By: adnane <adnane@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/04 19:29:52 by asaber            #+#    #+#              #
-#    Updated: 2023/12/20 00:38:01 by asaber           ###   ########.fr        #
+#    Updated: 2024/12/22 18:04:45 by adnane           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME	:= cub3d
-CFLAGS	:=  -Wunreachable-code -Ofast -Wextra -Wall -Werror #-fsanitize=address -g
-LIBMLX	:= /Users/$(USER)/MLX42
+CFLAGS	:=  -Wunreachable-code -Ofast #-Wextra -Wall #-Werror #-fsanitize=address -g
+LIBMLX	:= /home/adnane/MLX42
 
 HEADERS	:= -I ./include -I $(LIBMLX)/include
 LIBS	:= $(LIBMLX)/build/libmlx42.a -ldl -lglfw -pthread -lm

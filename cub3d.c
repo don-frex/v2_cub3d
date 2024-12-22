@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: asaber <asaber@student.42.fr>              +#+  +:+       +#+        */
+/*   By: adnane <adnane@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 19:20:53 by asaber            #+#    #+#             */
-/*   Updated: 2023/12/20 00:50:51 by asaber           ###   ########.fr       */
+/*   Updated: 2024/12/22 18:23:53 by adnane           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ void	pre_init(int fd, t_info *g_info)
 	g_info->player.raduis = 3.0;
 	g_info->player.walkdir = 0;
 	g_info->player.turndir = 0;
-	g_info->player.move_speed = 15.0;
+	g_info->player.move_speed = 12.0;
 	g_info->fov_angle = 60.0 * (M_PI / 180);
 	g_info->player.turndir = 0;
 	g_info->player.walkdir = 0;
